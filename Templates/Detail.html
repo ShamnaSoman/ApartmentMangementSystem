@@ -1,0 +1,113 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <title>Tenant Detail</title>
+    <link href=https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <style>
+        a {
+            margin: 0 10px 0 10px;
+            text-decoration: none;
+            color: black;
+        }
+        nav {
+            position: fixed;
+            width: 100%;
+            background-color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: Georgia,"Times New Roman",Times,serif;
+            border: 2px solid #2ecc71;
+        }
+        .lg {
+        cursor: pointer;
+        background: #2ecc71;
+        align : right;
+        text-decoration:none;
+        width: 150%;
+        padding: 10px 15px;
+        border: 0;
+        border-radius : 8px;
+        color: #fff;
+        font-family: "Roboto";
+        font-size: 18px;
+        font-weight: 600;
+        border : 1px solid white;
+      }
+      .center {
+            position: absolute;
+            text-align: center;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+       form {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background: #fff;
+        width: 600px;
+        margin: -20px 0 0 -550px;
+        padding: 40px;
+        box-shadow: 0 0 3px rgba(0,0,0,.3);
+    }
+    input {
+        outline: none;
+        display: block;
+        width: 100%;
+        margin: 0 0 20px;
+        padding: 10px 15px;
+        border: 1px solid #ccc;
+        color: black;
+        font-family: "Roboto";
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 14px;
+        font-wieght: 400;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-transition: 0.2s linear;
+        -moz-transition: 0.2s linear;
+        -ms-transition: 0.2s linear;
+        -o-transition: 0.2s linear;
+        transition: 0.2s linear;
+      }
+      input:focus {
+          color: #333;
+          border: 1px solid #2ecc71;
+        }
+       .header{
+        font-family: Georgia,"Times New Roman",Times,serif;
+        font-size: 3.1875em;
+        font-weight: 400;
+        line-height: 1.25;
+        display: block;
+    }
+    </style>
+</head>
+<div>
+     <div class="container"  style="margin-top:100px;">
+         <h3 class="header">Resident Details</h3>
+         <a href="/home" class="lg">Log Out</a>
+         <a href="/rent/{{form.Email.value}}" class="lg">Rent Payment</a>
+         <a class="lg" href="/complaint/{{form.Email.value}}">Register Complaint</a>
+     </div>
+    <form method="post" action="">
+         {% csrf_token %}
+        {% if messages %}
+            {% for message in messages %}
+                <p class="text-success">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        <div class="container" >
+         <h2>Welcome {{form.Name.value}}</h2>
+        {{form.as_p}}
+        <button type="submit" >Update</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

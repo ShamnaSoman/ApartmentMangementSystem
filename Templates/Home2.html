@@ -1,0 +1,603 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<head>
+    <script type="text/javascript">
+        $('.nav').click(function() {
+            var id = $(this).attr('id');
+            $('html, body').animate({
+                scrollTop: ($('#' + id + '.section').offset().top)
+            }, 1000);
+        }
+    </script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signin.css' %}">
+    <style type="text/css">
+    * {
+     box-sizing: border-box;
+    }
+    body{
+        background: #2ecc71 url("{% static 'images/main.jpg' %}") no-repeat center center fixed;
+          -webkit-background-size: cover;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+    nav {
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    text-align: left;
+    margin-bottom: 30px;
+     font-family: Georgia,"Times New Roman",Times,serif;
+     border: 2px solid #2ecc71;
+    }
+
+    a {
+    margin: 0 10px 0 10px;
+    text-decoration: none;
+    color: black;
+    }
+
+    html {
+    height: 100%;
+    }
+
+    .section {
+    height: 800px;
+    border : solid 1px black;
+    padding-top: 20px;
+    }
+    .caption{
+    position: absolute;
+    width: 100%;
+    height : 10%;
+    background-color: lightgrey;
+    text-align: center;
+    top : 40%;
+    font-family: Lucida Calligraphy,Comic Sans MS,Lucida Console;
+    font-size : 30px;
+    }
+
+    .contact{
+    font-family: "Montserrat";
+    text-align: center;
+    font-size: 60px;
+    font-weight: 400;
+    color: white;
+    }
+    div.gallery {
+      margin: 5px;
+      border: 1px solid #ccc;
+      float: left;
+      width: 400px;
+    }
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+  color : white;
+}
+
+    input {
+        outline: none;
+        display: block;
+        width: 100%;
+        margin: 0 0 0px;
+        padding: 5px 15px;
+        border: 1px solid #ccc;
+        color: black;
+        font-family: "Roboto";
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 14px;
+        font-weight: 400;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-transition: 0.2s linear;
+        -moz-transition: 0.2s linear;
+        -ms-transition: 0.2s linear;
+        -o-transition: 0.2s linear;
+        transition: 0.2s linear;
+      }
+      input:focus {
+          color: #333;
+          border: 1px solid #2ecc71;
+        }
+      button {
+        cursor: pointer;
+        width: 100%;
+        padding: 10px 15px;
+        border: 0;
+        border-radius : 8px;
+        color: #fff;
+        font-family: "Roboto";
+        font-size: 14px;
+        font-weight: 400;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-transition: 0.2s linear;
+        -moz-transition: 0.2s linear;
+        -ms-transition: 0.2s linear;
+        -o-transition: 0.2s linear;
+        transition: 0.2s linear;
+        background-color: rgba(63, 78, 191, 1);
+      }
+
+      .box{
+      position: absolute;
+      top : 490%;
+      width: 100%;
+      height: 50%;
+      margin: 0;
+      background-color: #2ecc71;
+      color: #ffffff;
+     font: 400 100%/1.6,"Helvetica Neue",Helvetica,Arial,sans-serif;
+      }
+      .box::after{
+       background-image :url("{% static 'images/pattern.jpg' %}");
+     background-position: center top;
+     content: "";
+     display: block;
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     opacity: .1;
+      }
+
+    img {
+    vertical-align: middle;
+    }
+
+/* Position the image container (needed to position the left and right arrows) */
+.container {
+  position: relative;
+  background-color: white;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+  text-align : center;
+}
+.cursor {
+  cursor: pointer;
+}
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0px;
+  text-align : center;
+}
+.caption-container {
+  text-align: center;
+  background-color:  #2ecc71;
+  padding: 2px 16px;
+  color: white;
+}
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 35%;
+  width: auto;
+  padding: 16px;
+  margin-top: 0px;
+  color: white;
+  font-weight: bold;
+  font-size: 40px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+   background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Six columns side by side */
+.column {
+  float: left;
+  width: 16.66%;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+#A ,#C{
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4);
+  }
+
+/* Float four columns side by side */
+.column1 {
+  position: relative;
+  float: left;
+  width: 30%;
+  padding: 0 30px;
+  transform-style: preserve-3d;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row1 {
+    margin: 380px 5px;
+    text-align:center;}
+
+/* Clear floats after the columns */
+.row1:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  border : 2px solid #2ecc71;
+  border-radius : 12px;
+  font-family: Georgia,"Times New Roman",Times,serif;
+}
+
+.card:hover{
+    background-color :black;
+    border : 2px solid white;
+    color : white;
+}
+
+.card h3{
+    font-family: Georgia,"Times New Roman",Times,serif;
+}
+.form-section{
+ padding: 40px 90px 10px 90px;
+}
+.signin{
+  position: relative;
+  height: 750px;
+  width: 500px;
+  margin: auto;
+  box-shadow: 0px 30px 125px -5px #000;}
+
+  /*Background Img*/
+.back-img{
+  position: relative;
+  width: 100%;
+  height: 240px;
+  background: url('https://www.omnihotels.com/-/media/images/hotels/nycber/destinations/nyc-aerial-skyline.jpg?h=660&la=en&w=1170')no-repeat   center center;
+background-size: cover;
+}
+
+.layer {
+    background-color: rgba(33,150,243,0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.active{
+  padding-left: 25px;
+  color: #fff;
+}
+.nonactive {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.sign-in-text{
+  top: 175px;
+  position: absolute;
+  z-index: 1;
+  font-family: Georgia,"Times New Roman",Times,serif;
+  font-size: 2.1875em;
+  font-weight: 400;
+  line-height: 1.25;
+}
+.active , .nonactive {
+  padding-left: 15px;
+  font-size: 25px;
+  text-transform: uppercase;
+  display: inline-block;
+  font-weight: 300;
+}
+
+.point{
+  position: absolute;
+  z-index: 1;
+  color: #fff;
+  top: 235px;
+  padding-left: 50px;
+  font-size: 20px;
+}
+.keep-text{
+  font-size: 15px;
+  color: #BDBDBD;
+}
+
+.sign-in-btn{
+  width: 100%;
+  height: 75px;
+  position:absolute;
+  bottom:0;
+  border-radius: 0px;
+  background-color: rgba(63, 78, 191, 1);
+}
+
+label{
+font-size : 15px;
+color : black;
+font-family: Georgia,"Times New Roman",Times,serif;
+
+}
+ </style>
+</head>
+    <div class="caption">
+        <div class="triangle-left"></div>
+        Reside in a home that give space for all your needs .......
+    </div>
+
+
+ <div class="row1">
+      <div class="column1">
+        <div class="card">
+          <h3>1,2,3 BHK Available</h3>
+          <p>With Balcony , Spacious Room , Parking space</p>
+          <p>24 Hour Emergency Maintenance</p>
+        </div>
+      </div>
+
+      <div class="column1">
+        <div class="card">
+          <h3>Community Facility</h3>
+          <p>Kids park , Resort style Pool</p>
+          <p>Fitness Center, Club House , Party Hall</p>
+        </div>
+      </div>
+
+      <div class="column1">
+        <div class="card">
+          <h3>Neighbourhood</h3>
+          <p>You can find everything Nearby our Apartment</p>
+          <p>Shopping centers, Hospital , Dining options</p>
+        </div>
+      </div>
+
+ </div>
+
+    <div class="section" style="background-color:white" >
+        <div class="signin" id="F">
+            <div class="back-img">
+                <div class="sign-in-text">
+                    <h2 class="active">Plan A Visit</h2>
+                    <h2 class="nonactive">Plan A Visit</h2>
+                </div><!--/.sign-in-text-->
+                <div class="layer">
+                </div><!--/.layer-->
+                <p class="point">&#9650;</p>
+            </div><!--/.back-img-->
+            <div class="form-section">
+                    {% csrf_token %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="text-success">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+
+
+                <form method="post" action="" >
+
+                    <label>Full Name :</label>
+                    <input type="text" name="name" placeholder="Full Name"><br>
+                    <label>Email :</label>
+                    <input type="email" name="email" placeholder="Email"><br>
+                    <label>Mobile No :</label>
+                    <input type="number" name="mobile" placeholder="Mobile"><br>
+                    <label>Desired Visit Date :</label>
+                    <input type="date" name="date" placeholder="Date">
+                    <br>
+                    <button type="submit">
+                    SEND NOW
+                    </button><!--/button-->
+                </form>
+            </div><!--/.form-section-->
+        </div><!--/.signin-->
+
+    </div>
+
+    <div class="section" id="A">
+        <h1 class="contact" >Gallery</h1>
+        <div class="container">
+          <div class="mySlides">
+            <div class="numbertext">1 / 9</div>
+            <img src="{% static 'images/4.jpg' %}" style="width:50%">
+          </div>
+
+          <div class="mySlides">
+            <div class="numbertext">2 / 9</div>
+            <img src="{% static 'images/3.jpg' %}" style="width:50%">
+          </div>
+
+          <div class="mySlides">
+            <div class="numbertext">3 / 9</div>
+            <img src="{% static 'images/7.jpg' %}" style="width:50%">
+          </div>
+            <div class="mySlides">
+            <div class="numbertext">4 / 9</div>
+            <img src="{% static 'images/14.jpg' %}" style="width:50%">
+          </div>
+
+          <div class="mySlides">
+            <div class="numbertext">5 / 9</div>
+            <img src="{% static 'images/D6.jpg' %}" style="width:50%">
+          </div>
+
+          <div class="mySlides">
+            <div class="numbertext">6 / 9</div>
+            <img src="{% static 'images/16.jpg' %}" style="width:50%">
+          </div>
+
+          <div class="mySlides">
+            <div class="numbertext">7 / 9</div>
+            <img src="{% static 'images/21.jpg' %}" style="width:50%">
+          </div>
+
+          <div class="mySlides">
+            <div class="numbertext">8 / 9</div>
+            <img src="{% static 'images/17.jpg' %}" style="width:50%">
+          </div>
+
+          <div class="mySlides">
+            <div class="numbertext">9 / 9</div>
+            <img src="{% static 'images/19.jpg' %}" style="width:50%">
+          </div>
+
+          <div class="mySlides">
+            <div class="numbertext">9 / 10</div>
+            <img src="{% static 'images/D13.png' %}" style="width:50%">
+          </div>
+
+          <a class="prev" onclick="plusSlides(-1)">❮</a>
+          <a class="next" onclick="plusSlides(1)">❯</a>
+
+          <div class="caption-container">
+              <p id="caption"></p>
+          </div>
+
+          <div class="row">
+            <div class="column">
+             <img class="demo cursor" src="{% static 'images/4.jpg' %}" style="width:50%" onclick="currentSlide(1)" alt="Kitchen">
+            </div>
+            <div class="column">
+                <img class="demo cursor" src="{% static 'images/3.jpg' %}" style="width:50%" onclick="currentSlide(2)" alt="Dining Room">
+             </div>
+             <div class="column">
+                 <img class="demo cursor" src="{% static 'images/7.jpg' %}" style="width:50%" onclick="currentSlide(3)" alt="Living Room">
+             </div>
+              <div class="column">
+                 <img class="demo cursor" src="{% static 'images/14.jpg' %}" style="width:50%" onclick="currentSlide(3)" alt="Living Room">
+             </div>
+              <div class="column">
+                 <img class="demo cursor" src="{% static 'images/D6.jpg' %}" style="width:50%" onclick="currentSlide(3)" alt="Living Room">
+             </div>
+              <div class="column">
+                 <img class="demo cursor" src="{% static 'images/16.jpg' %}" style="width:50%" onclick="currentSlide(3)" alt="Swimming Pool">
+             </div>
+             <div class="column">
+                 <img class="demo cursor" src="{% static 'images/21.jpg' %}" style="width:50%" onclick="currentSlide(3)" alt="Kids Park">
+             </div>
+              <div class="column">
+                 <img class="demo cursor" src="{% static 'images/17.jpg' %}" style="width:50%" onclick="currentSlide(3)" alt="Car Parking">
+             </div>
+              <div class="column">
+                 <img class="demo cursor" src="{% static 'images/19.jpg' %}" style="width:50%" onclick="currentSlide(3)" alt="Fitness Center">
+             </div>
+              <div class="column">
+                 <img class="demo cursor" src="{% static 'images/D13.png' %}" style="width:50%" onclick="currentSlide(3)" alt="BedRoom">
+             </div>
+
+          </div>
+
+        </div>
+        <script>
+                var slideIndex = 1;
+                showSlides(slideIndex);
+
+                function plusSlides(n) {
+                  showSlides(slideIndex += n);
+                }
+
+                function currentSlide(n) {
+                  showSlides(slideIndex = n);
+                }
+
+                function showSlides(n) {
+                  var i;
+                  var slides = document.getElementsByClassName("mySlides");
+                  var dots = document.getElementsByClassName("demo");
+                  var captionText = document.getElementById("caption");
+                  if (n > slides.length) {slideIndex = 1}
+                  if (n < 1) {slideIndex = slides.length}
+                  for (i = 0; i < slides.length; i++) {
+                      slides[i].style.display = "none";
+                  }
+                  for (i = 0; i < dots.length; i++) {
+                      dots[i].className = dots[i].className.replace(" active", "");
+                  }
+                  slides[slideIndex-1].style.display = "block";
+                  dots[slideIndex-1].className += " active";
+                  captionText.innerHTML = dots[slideIndex-1].alt;
+                }
+        </script>
+
+    </div>
+
+    <div class="section" id="B" style="background-color:white;">
+        <div class="container1" onclick="onclick">
+          <div class="top"></div>
+          <div class="bottom"></div>
+          <div class="center">
+            <h2 style=" font-family:Montserrat;">Resident Portal	</h2>
+            <h5 style="text-align: center;">Click the below link to redirect to the Residents Login Page</h3>
+            <br>
+            <a href="signup" class="clk" >Click</a>
+            <h2>&nbsp;</h2>
+          </div>
+        </div>
+
+    </div>
+    <div class="section" id="C">
+        <h1 class="contact" >Contact Us</h1>
+        <div style="width:100%;text-align:center;left:70%;-ms-transform: translateY(-50%);-ms-transform: translateY(-50%);">
+               <p style="color:white;font-family:Century Gothic;font-size:20px">Find the best place to come home to. At our apartments in Calicut, the wide selection of one bedroom, two bedroom, and three bedroom homes and spectacular community with expansive spaces, residents will love getting to explore our community.
+                   In each home, residents can take advantage of the stainless steel appliances, large closets, and select homes will even feature balcony.
+                   Throughout our community, the resort-style swimming pool, upgraded fitness center, and kids area will allow residents to find the best place to spend their days.
+             Our apartments feature amazing amenities that will enhance every living experience.</p>
+        </div>
+
+        <div style="margin-top:48px; color:white;font-size:20px;text-align:center">
+        <p><i class="fa fa-clock-o"></i> Sun : Closed</p>
+        <p><i class="fa fa-clock-o"></i> Mon - Sat : 9 A.M to 6 P.M</p>
+        <br><br>
+        <p><i class="fa fa-map-marker"></i> Calicut, Kerala</p>
+        <p><i class="fa fa-phone"></i> Phone: +91-9633079984</p>
+        <p><i class="fa fa-envelope"> </i> Email: Rooftop@mail.com</p>
+    </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+    <style>
+
+    .center{
+      position: absolute;
+      top : 250px;
+      z-index: -1;
+      width: 100%;
+      height:30%;
+      margin: 0;
+      background-color: #2ecc71;
+      color: #ffffff;
+     font: 400 100%/1.6,"Helvetica Neue",Helvetica,Arial,sans-serif;
+     text-align: center;
+      }
+      .center::after{
+       background-image :url("{% static 'images/pattern.jpg' %}");
+     background-position: center top;
+     z-index: 1;
+     content: "";
+     display: block;
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     opacity: .1;
+      }
+         nav {
+            position: fixed;
+            width: 100%;
+            background-color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            text-decoration:none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center">
+        <h3 style="margin-top:50px;">
+            Thanks, for the payment!! <i class="fas fa-check-circle"></i>
+        </h3>
+    </div>
+</body>
+
+{% endblock content %}

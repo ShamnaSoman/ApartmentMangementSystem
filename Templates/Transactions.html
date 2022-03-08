@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://kit.fontawesome.com/47101d2035.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Payment base</title>
+        <style>
+       body {
+           background: #2ecc71 url("{% static 'images/room.jpg' %}") no-repeat center center fixed;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+          font-family: "Roboto";
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+      body::before {
+        z-index: -1;
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #2ecc71; /* IE Fallback */
+        background: rgba(46,204,113,.5);
+        width: 100%;
+        height: 100%;
+      }
+        .center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+<div class="center">
+
+    <form class="text-center border border-light p-5" action="success" method="POST">
+        {% csrf_token %}
+
+        <p class="h3 mb-3"><i class="fas fa-book"></i> BUY the Book</p>
+        <div>You can make the payment over here</div>
+
+        <input type="name" name="name" id="name" required class="form-control mb-4" placeholder="Name">
+        <input type="number" max="5000" name="price" id="price" required class="form-control mb-4" placeholder="Amount">
+
+
+        <!-- RAZORPAY INTEGRATION HERE -->
+        <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_KadYnmNZAFuKEg"
+            data-amount="50000" data-currency="INR" data-order_id="{{payment.id}}" data-buttontext="Pay with Razorpay"
+            data-name="The Book Spot" data-description="The online book store"
+            data-image="https://images.designtrends.com/wp-content/uploads/2016/02/16114252/Colorful-book-Logo-design.jpg" data-prefill.name="PC" data-prefill.email=""
+            data-theme.color="lightblue"></script>
+    </form>
+
+</div>
+
+
+</div>
+</body>
+</html>

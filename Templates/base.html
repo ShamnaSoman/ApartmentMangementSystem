@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Roof Top</title>
+    <script src="https://kit.fontawesome.com/47101d2035.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .image-container{
+          position: absolute;
+          top: 5%;
+          background: rgb(0, 0, 0); /* Fallback color */
+          background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+          color: #f1f1f1;
+          width: 100%;
+          padding: 10px;
+          font: 400 100%/1.6,"Helvetica Neue",Helvetica,Arial,sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align:center;">
+        <nav style="font-size:20px; text-align:right; margin-right:60px;">
+            <a href="#F"><i class="fa fa-calendar"></i></a>
+            <a href="https://www.google.com/maps/place/Exotica+Apartments+Calicut-+Confident+Group/@11.2686116,75.7973994,16.57z/data=!4m9!1m2!2m1!1sApartment+,Calicut,+Kerala,+India!3m5!1s0x3ba65eac283d93bd:0x11863f709fa30adb!8m2!3d11.2690195!4d75.7993024!15sCiFBcGFydG1lbnQgLENhbGljdXQsIEtlcmFsYSwgSW5kaWGSARJhcGFydG1lbnRfYnVpbGRpbmc"><i class="fa fa-map-marker"></i></a> |
+            <a href="#">Home</a> |
+            <a href="#A">Gallery</a> |
+            <a href="#B">Residents</a> |
+            <a href="#C">Contact</a>
+        </nav>
+    </div>
+    <div class="image-container" >
+        <h1 style="font-family: Gabriola; font-size:60px;font-weight:900;letter-spacing: 3px;margin:0;"><i class="fas fa-building " style="color:black;"></i><span style="font-family: Ink Free; font-size:30px">THE </span> ROOF TOP</h1>
+        <p style="font-family: Sylfaen; color:white;font-size:18px;margin:0;">Aparments for rental</p>
+    </div>
+    <br><br>
+    {% block content %}
+
+
+    {% endblock     %}
+</body>
+</html>

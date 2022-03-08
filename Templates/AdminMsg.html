@@ -1,0 +1,117 @@
+{% extends 'base1.html' %}
+
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+    nav {
+    position: fixed;
+    width: 100%;
+    background-color: lightgrey;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    border: 2px solid #2ecc71;
+    }
+
+    .ref {
+    margin: 0 10px 0 10px;
+    color: black;
+    width : 30px;
+    border : 1px solid ;
+    border-radius : 4px;
+    background-color:#2ecc71;
+    }
+
+    table{
+        margin-top: 20px;
+        border-collapse: collapse;
+        border-spacing: 0;
+        border: 1px solid #ddd;
+        width : 100%
+        }
+
+        tr,td{
+        text-align: left;
+        padding: 16px;
+        }
+
+         tr:nth-child(odd) {
+          background-color: lightgrey;
+          }
+        tr:nth-child(even) {
+          background-color: #f2f2f2;
+          }
+    .lg {
+        cursor: pointer;
+        background: #2ecc71;
+        align : right;
+        text-decoration:none;
+        width: 150%;
+        padding: 10px 15px;
+        border: 0;
+        color: #fff;
+        font-family: "Roboto";
+        font-size: 18px;
+        font-weight: 600;
+        border-radius : 6px;
+        border : 1px solid white;
+      }
+    .container{
+        margin-top: 80px;
+    }
+    .header{
+        font-family: Georgia,"Times New Roman",Times,serif;
+        font-size: 3.1875em;
+        font-weight: 400;
+        line-height: 1.25;
+        display: block;
+    }
+    </style>
+</head>
+<div class="container">
+    <h1 class="header">ADMIN PAGE - COMPLAINTS</h1>
+    <a href="admin1" class="lg">Back</a>
+    <a href="{% url 'home' %}" class="lg">Log Out</a>
+    <br>
+     <br>
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="color: white;font-size:25px">{{ message }}</p>
+                 {% endfor %}
+            {% endif %}
+    <table height="200" width="500" class="table">
+        <thead style="font-weight : bold;font-family:Century Gothic;font-size:20px">
+            <tr style="background-color:#2ecc71;">
+                <td>Tenant Name</td>
+                <td>Tenant Mobile </td>
+                <td>Tenant Email</td>
+                <td>Complaint</td>
+                <td>Registered Date</td>
+                <td>Action</td>
+                <td>Status</td>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for complaint in complaint %}
+            <tr>
+                <td>{{complaint.Name}}</td>
+                <td>{{complaint.Mobile}}</td>
+                <td>{{complaint.Email}}</td>
+                <td>{{complaint.Text}}</td>
+                <td>{{complaint.Date_Reg }}</td>
+                <td>
+                    <a href="/sendmail/{{complaint.Email}}" class="ref">Send Email</a>
+                    <a href="/delete/{{complaint.id}}" class="ref">Delete</a>
+                </td>
+                <td><a>Change status<a></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
